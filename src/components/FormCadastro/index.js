@@ -4,10 +4,12 @@ import Button from '@material-ui/core/Button';
 import InputSenha from '../InputSenha';
 import useStyles from '../../styles/formStyles';
 import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router';
 
 const FormCadastro = ({setRequestErro, setCarregando}) => {
     const { register, handleSubmit, formState: { errors }, setError } = useForm();
     const classes = useStyles();
+    const history = useHistory();
 
     const onSubmit = async (data) => {
         if(data.senha !== data.repetirSenha){
@@ -27,8 +29,9 @@ const FormCadastro = ({setRequestErro, setCarregando}) => {
                 }
             })
         setCarregando(false);
+        
         if(resposta.ok){
-            return console.log("cadastrado");
+            history.push('/home')
         }
 
         const message = await resposta.json()

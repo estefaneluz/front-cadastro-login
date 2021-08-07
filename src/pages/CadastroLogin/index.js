@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme)=>({
     }
 }));
 
-const Page = () => {
+export default function CadastroLogin() {
     const classes = useStyles();
     const [carregando, setCarregando] = useState(false);
     const [requestErro, setRequestErro] = useState('');
@@ -43,5 +43,3 @@ const Page = () => {
         </div>
     );
 }
-
-export default Page;
