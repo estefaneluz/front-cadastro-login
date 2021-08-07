@@ -5,7 +5,7 @@ import InputSenha from '../InputSenha';
 import useStyles from '../../styles/formStyles';
 import { useForm } from 'react-hook-form';
 
-const FormCadastro = () => {
+const FormCadastro = ({setRequestErro, setCarregando}) => {
     const { register, handleSubmit, formState: { errors }, setError } = useForm();
     const classes = useStyles();
 
@@ -16,6 +16,8 @@ const FormCadastro = () => {
             return;
         }
 
+        setRequestErro('');
+        setCarregando(true);
         const resposta = await fetch(
             'https://revisao-m03.herokuapp.com/usuarios', {
                 method: "POST",
@@ -24,13 +26,13 @@ const FormCadastro = () => {
                     'Content-type': 'application/json',
                 }
             })
-
+        setCarregando(false);
         if(resposta.ok){
             return console.log("cadastrado");
         }
 
-        const dados = await resposta.json()
-        return console.log(dados);
+        const message = await resposta.json()
+        setRequestErro(message);
     }
 
     return (
