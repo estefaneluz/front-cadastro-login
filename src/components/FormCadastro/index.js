@@ -29,7 +29,7 @@ const FormCadastro = ({setRequestErro, setCarregando}) => {
                 }
             })
         setCarregando(false);
-        
+
         if(resposta.ok){
             history.push('/home')
         }
@@ -47,14 +47,12 @@ const FormCadastro = ({setRequestErro, setCarregando}) => {
                 <TextField 
                     {...register("nome", { required: true })}
                     className={classes.input} 
-                    id="standard-basic" 
                     label="Nome" 
                     error={!!errors.nome}
                     />
                 <TextField 
                     {...register("email", { required: true })}
                     className={classes.input} 
-                    id="standard-basic" 
                     label="E-mail" 
                     type="email" 
                     error={!!errors.email}

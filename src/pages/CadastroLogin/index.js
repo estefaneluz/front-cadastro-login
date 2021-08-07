@@ -3,12 +3,16 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Card, Backdrop, CircularProgress, Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import FormCadastro from '../../components/FormCadastro';
+import FormLogin from '../../components/FormLogin';
 import { useState } from 'react';
+import { StarTwoTone } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme)=>({
     root: {
+      display: "flex",
+      columnGap: 120,
       minWidth: 275,
-      padding: "3vh 3vw",
+      padding: "5vh 8vw 7vh 5vw",
       boxShadow: "0px 8px 9px -5px rgba(0, 0, 0, 0.2), 0px 15px 22px 2px rgba(0, 0, 0, 0.14), 0px 6px 28px 5px rgba(0, 0, 0, 0.12)",
       borderRadius: 16
     },
@@ -29,6 +33,8 @@ export default function CadastroLogin() {
         <div className="container">
             <Card className={classes.root}>
                 <FormCadastro setRequestErro={setRequestErro} setCarregando={setCarregando}/>
+                <hr />
+                <FormLogin setRequestErro={setRequestErro} setCarregando={setCarregando}/>
             </Card>
 
             <Backdrop className={classes.backdrop} open={carregando} >
