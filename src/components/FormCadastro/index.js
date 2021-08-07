@@ -9,8 +9,28 @@ const FormCadastro = () => {
     const { register, handleSubmit, formState: { errors }, setError } = useForm();
     const classes = useStyles();
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
+        if(data.senha !== data.repetirSenha){
+            setError('senha', {type: 'validate'}, {shouldFocus: true});
+            setError('repetirSenha', {type: 'validate'}, {shouldFocus: false});
+            return;
+        }
 
+        const resposta = await fetch(
+            'https://revisao-m03.herokuapp.com/usuarios', {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-type': 'application/json',
+                }
+            })
+
+        if(resposta.ok){
+            return console.log("cadastrado");
+        }
+
+        const dados = await resposta.json()
+        return console.log(dados);
     }
 
     return (
