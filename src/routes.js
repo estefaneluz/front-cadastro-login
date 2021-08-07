@@ -1,8 +1,9 @@
 import React from 'react';
+import CadastroLogin from './pages/CadastroLogin'
 
 function Routes() {
   return (
-    <h1>Olá</h1>
+    <CadastroLogin/>
   );
 }
 

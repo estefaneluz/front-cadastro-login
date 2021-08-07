@@ -1,0 +1,6 @@
+.container {
+    min-height: 100vh;
+    background-color: #88C2CF;
+    display: grid;
+    place-content: center;
+}
