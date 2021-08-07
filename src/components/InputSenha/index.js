@@ -10,7 +10,12 @@ const InputSenha = (props) => {
 
     return (
     <FormControl>
-        <InputLabel htmlFor={props.id}>{props.label}</InputLabel>
+        <InputLabel 
+            htmlFor={props.id}
+            error={props.error}
+        >
+            {props.label}
+        </InputLabel>
         <Input
         error={props.error}
         id={props.id}
