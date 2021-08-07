@@ -21,7 +21,10 @@ const useStyles = makeStyles({
     },
     row: {
         display: "flex",
-        columnGap: 30
+        columnGap: 30,
+    },
+    input: {
+        width: 220
     }
 });
 
