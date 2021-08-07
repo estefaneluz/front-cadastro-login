@@ -12,6 +12,7 @@ const InputSenha = (props) => {
     <FormControl>
         <InputLabel htmlFor={props.id}>{props.label}</InputLabel>
         <Input
+        error={props.error}
         id={props.id}
         type={mostrarSenha ? 'text' : 'password'}
         className={classes.input}

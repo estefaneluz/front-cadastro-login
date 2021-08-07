@@ -6,10 +6,13 @@ import useStyles from '../../styles/formStyles';
 import { useForm } from 'react-hook-form';
 
 const FormCadastro = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, setError } = useForm();
     const classes = useStyles();
 
-    const onSubmit = data => console.log(data);
+    const onSubmit = (data) => {
+
+    }
+
     return (
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
             <Typography className={classes.title} component="h2">
@@ -20,24 +23,30 @@ const FormCadastro = () => {
                     {...register("nome", { required: true })}
                     className={classes.input} 
                     id="standard-basic" 
-                    label="Nome" />
+                    label="Nome" 
+                    error={!!errors.nome}
+                    />
                 <TextField 
                     {...register("email", { required: true })}
                     className={classes.input} 
                     id="standard-basic" 
                     label="E-mail" 
-                    type="email" />
+                    type="email" 
+                    error={!!errors.email}
+                    />
             </div>
             <div className={classes.row}>
                 <InputSenha 
                     register={() => register("senha", { required: true })}
                     id="senha" 
                     label="Senha"
+                    error={!!errors.senha}
                 />
                 <InputSenha 
                     register={() => register("repetirSenha", { required: true })}
                     id="repetir-senha" 
                     label="Repita a Senha"
+                    error={!!errors.repetirSenha}
                 />
             </div>
             <Button type="submit" className={classes.button} variant="contained" color="primary">
