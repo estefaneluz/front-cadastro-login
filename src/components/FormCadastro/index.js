@@ -1,24 +1,44 @@
 import { Typography } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
-import useStyles from '../../styles/formStyles'
 import Button from '@material-ui/core/Button';
 import InputSenha from '../InputSenha';
+import useStyles from '../../styles/formStyles';
+import { useForm } from 'react-hook-form';
 
 const FormCadastro = () => {
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const classes = useStyles();
 
+    const onSubmit = data => console.log(data);
     return (
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
             <Typography className={classes.title} component="h2">
                 Cadastro
             </Typography>
             <div className={classes.row}>
-                <TextField className={classes.input} id="standard-basic" label="Nome" />
-                <TextField className={classes.input} id="standard-basic" label="E-mail" type="email" />
+                <TextField 
+                    {...register("nome", { required: true })}
+                    className={classes.input} 
+                    id="standard-basic" 
+                    label="Nome" />
+                <TextField 
+                    {...register("email", { required: true })}
+                    className={classes.input} 
+                    id="standard-basic" 
+                    label="E-mail" 
+                    type="email" />
             </div>
-            <div clasName={classes.row}>
-                <InputSenha id="senha" label="Senha"/>
-                <InputSenha id="repetir-senha" label="Repita a Senha"/>
+            <div className={classes.row}>
+                <InputSenha 
+                    register={() => register("senha", { required: true })}
+                    id="senha" 
+                    label="Senha"
+                />
+                <InputSenha 
+                    register={() => register("repetirSenha", { required: true })}
+                    id="repetir-senha" 
+                    label="Repita a Senha"
+                />
             </div>
             <Button type="submit" className={classes.button} variant="contained" color="primary">
                 Cadastrar-se

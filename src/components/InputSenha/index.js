@@ -1,5 +1,4 @@
 import { FormControl, IconButton, Input, InputAdornment, InputLabel } from '@material-ui/core';
-import clsx from 'clsx';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import useStyles from './styles'
@@ -10,12 +9,13 @@ const InputSenha = (props) => {
     const [mostrarSenha, setMostrarSenha] = useState();
 
     return (
-    <FormControl className={clsx(classes.margin, classes.textField)}>
+    <FormControl>
         <InputLabel htmlFor={props.id}>{props.label}</InputLabel>
         <Input
         id={props.id}
         type={mostrarSenha ? 'text' : 'password'}
         className={classes.input}
+        {...props.register()}
         endAdornment={
             <InputAdornment position="end">
             <IconButton aria-label="Toggle password visibility" onClick={() => setMostrarSenha(!mostrarSenha)}>
