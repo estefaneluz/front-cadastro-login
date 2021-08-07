@@ -11,7 +11,28 @@ export default function FormLogin({setRequestErro, setCarregando}){
     const classes = useStyles();
     const history = useHistory();
 
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = async (data) => {
+        setRequestErro('');
+        setCarregando(true);
+
+        const resposta = await fetch('https://revisao-m03.herokuapp.com/login',{
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        });
+
+        setCarregando(false);
+
+        const dados = await resposta.json();
+
+        if(resposta.ok){
+            return history.push("/home");
+        }
+
+        setRequestErro(dados);
+    }
 
     return(
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
