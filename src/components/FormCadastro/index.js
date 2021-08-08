@@ -3,9 +3,12 @@ import InputSenha from '../InputSenha';
 import useStyles from '../../styles/formStyles';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router';
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const FormCadastro = ({setRequestErro, setCarregando}) => {
     const { register, handleSubmit, formState: { errors }, setError } = useForm();
+    const { setToken } = useContext(AuthContext);
     const classes = useStyles();
     const history = useHistory();
 
@@ -29,7 +32,7 @@ const FormCadastro = ({setRequestErro, setCarregando}) => {
         setCarregando(false);
 
         if(resposta.ok){
-            history.push('/home')
+            history.push('/home');
         }
 
         const message = await resposta.json()
