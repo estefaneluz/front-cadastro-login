@@ -5,7 +5,6 @@ import { Alert } from '@material-ui/lab';
 import FormCadastro from '../../components/FormCadastro';
 import FormLogin from '../../components/FormLogin';
 import { useState } from 'react';
-import { StarTwoTone } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme)=>({
     root: {
