@@ -1,6 +1,4 @@
-import { Typography } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import { Typography, TextField, Button } from '@material-ui/core';
 import InputSenha from '../InputSenha';
 import useStyles from '../../styles/formStyles';
 import { useForm } from 'react-hook-form';

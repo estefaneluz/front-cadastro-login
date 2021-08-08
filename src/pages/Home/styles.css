@@ -1,0 +1,7 @@
+.container-home {
+    background-color: #fff;
+    height: 80vh;
+    display: grid;
+    place-content: center;
+    color: black;
+}
