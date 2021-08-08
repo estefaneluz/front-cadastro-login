@@ -25,13 +25,21 @@ export default function CadastroLogin() {
     const classes = useStyles();
     const [carregando, setCarregando] = useState(false);
     const [requestErro, setRequestErro] = useState('');
+    const [requestSucesso, setRequestSucesso] = useState('');
 
-    const fecharAlert = () => setRequestErro('')
+    const fecharAlert = () => { 
+        setRequestErro('');
+        setRequestSucesso('');
+    }
 
     return (
         <div className="container">
             <Card className={classes.root}>
-                <FormCadastro setRequestErro={setRequestErro} setCarregando={setCarregando}/>
+                <FormCadastro 
+                    setRequestErro={setRequestErro} 
+                    setRequestSucesso={setRequestSucesso}
+                    setCarregando={setCarregando}
+                />
                 <hr />
                 <FormLogin setRequestErro={setRequestErro} setCarregando={setCarregando}/>
             </Card>
@@ -40,9 +48,9 @@ export default function CadastroLogin() {
                 <CircularProgress color="inherit" />
             </Backdrop>
 
-            <Snackbar open={!!requestErro} autoHideDuration={6000} onClose={fecharAlert}>
-                <Alert onClose={fecharAlert} severity="error">
-                    {requestErro}
+            <Snackbar open={!!requestErro || !!requestSucesso} autoHideDuration={6000} onClose={fecharAlert}>
+                <Alert onClose={fecharAlert} severity={!!requestSucesso ? "success" : "error"}>
+                    {!!requestSucesso ? requestSucesso : requestErro}
                 </Alert>
             </Snackbar>
         </div>

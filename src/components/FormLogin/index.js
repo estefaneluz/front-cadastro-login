@@ -7,7 +7,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 
 export default function FormLogin({setRequestErro, setCarregando}){
-    const { register, handleSubmit, formState: { errors }, setError } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const { setToken } = useContext(AuthContext);
     const classes = useStyles();
     const history = useHistory();

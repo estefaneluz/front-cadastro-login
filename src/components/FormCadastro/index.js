@@ -2,15 +2,10 @@ import { Typography, TextField, Button } from '@material-ui/core';
 import InputSenha from '../InputSenha';
 import useStyles from '../../styles/formStyles';
 import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router';
-import { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
 
-const FormCadastro = ({setRequestErro, setCarregando}) => {
-    const { register, handleSubmit, formState: { errors }, setError } = useForm();
-    const { setToken } = useContext(AuthContext);
+const FormCadastro = ({setRequestErro, setRequestSucesso, setCarregando}) => {
+    const { register, handleSubmit, formState: { errors }, setError, reset } = useForm();
     const classes = useStyles();
-    const history = useHistory();
 
     const onSubmit = async (data) => {
         if(data.senha !== data.repetirSenha){
@@ -31,11 +26,13 @@ const FormCadastro = ({setRequestErro, setCarregando}) => {
             })
         setCarregando(false);
 
+        const message = await resposta.json()
+
         if(resposta.ok){
-            history.push('/home');
+            reset(resposta);
+            return setRequestSucesso(message);
         }
 
-        const message = await resposta.json()
         setRequestErro(message);
     }
 
